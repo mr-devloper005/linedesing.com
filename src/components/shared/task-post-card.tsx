@@ -56,10 +56,10 @@ const getImageUrl = (post: SitePost, content: ListingContent) => {
 
 const cardStyles = {
   'listing-elevated': {
-    frame: 'rounded-[1.9rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_28px_75px_rgba(15,23,42,0.14)]',
-    muted: 'text-slate-600',
-    title: 'text-slate-950',
-    badge: 'bg-slate-950 text-white',
+    frame: 'rounded-[1.9rem] border border-[rgba(251,195,193,0.6)] bg-[rgba(255,255,255,0.95)] shadow-[0_18px_54px_rgba(172,93,126,0.12)] hover:-translate-y-1 hover:shadow-[0_24px_72px_rgba(172,93,126,0.2)]',
+    muted: 'text-[#745265]',
+    title: 'text-[#3e1f31]',
+    badge: 'bg-[#FE81D4] text-[#3e1f31]',
   },
   'editorial-feature': {
     frame: 'rounded-[1.8rem] border border-[rgba(125,83,45,0.12)] bg-[#fffaf3] shadow-[0_18px_55px_rgba(89,52,24,0.1)] hover:-translate-y-1 hover:shadow-[0_26px_75px_rgba(89,52,24,0.14)]',
@@ -68,10 +68,10 @@ const cardStyles = {
     badge: 'bg-[#2b1d17] text-[#fff3df]',
   },
   'studio-panel': {
-    frame: 'rounded-[1.9rem] border border-white/10 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(12,23,43,0.96))] text-white shadow-[0_24px_80px_rgba(15,23,42,0.35)] hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,23,42,0.42)]',
-    muted: 'text-slate-300',
-    title: 'text-white',
-    badge: 'bg-[#8df0c8] text-[#07111f]',
+    frame: 'rounded-[1.9rem] border border-[rgba(251,195,193,0.44)] bg-[linear-gradient(165deg,rgba(254,129,212,0.16),rgba(255,234,187,0.2)_45%,rgba(255,255,255,0.92))] text-[#3b2032] shadow-[0_20px_66px_rgba(176,100,132,0.2)] hover:-translate-y-1 hover:shadow-[0_26px_76px_rgba(176,100,132,0.28)]',
+    muted: 'text-[#6f4b60]',
+    title: 'text-[#3b2032]',
+    badge: 'bg-[#FFEABB] text-[#4d3f1a]',
   },
   'catalog-grid': {
     frame: 'rounded-[1.8rem] border border-[rgba(67,78,41,0.14)] bg-[#f8faf1] shadow-[0_18px_58px_rgba(55,65,31,0.1)] hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(55,65,31,0.14)]',

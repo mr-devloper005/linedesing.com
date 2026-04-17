@@ -2,10 +2,10 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Image and profile platform',
+    tagline: 'Premium image and profile network',
   },
   footer: {
-    tagline: 'Visual posts, creators, and discoverable profiles',
+    tagline: 'Curated visuals and identity-led profiles',
   },
   hero: {
     badge: 'Visual board studio',
@@ -29,49 +29,49 @@ export const siteContent = {
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Premium image sharing and profile discovery',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Discover premium galleries, creator profiles, and visual stories on linedesine.com.',
+      openGraphTitle: 'Premium image sharing and profile discovery',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Browse image collections, profile highlights, and visual posts with a premium minimal interface.',
+      keywords: ['image sharing', 'creator profiles', 'visual discovery', 'linedesine.com'],
     },
     introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introTitle: 'Built for visual discovery, curated image drops, and standout creator identity.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'linedesine.com is designed around image-led exploration, where every surface gives more room to visuals, creator presence, and premium curation.',
+      'Instead of splitting the experience across unrelated content types, the UI now centers on image boards and public profiles so discovery feels focused and intentional.',
+      'Visitors can move naturally from a gallery into the person behind it, then into related visual posts without the interface getting noisy.',
     ],
     sideBadge: 'At a glance',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Gallery-first homepage with larger visual modules and cleaner whitespace.',
+      'Profile-led discovery so every image connects back to a creator identity.',
+      'Fewer top-level sections, making the product feel more premium and focused.',
+      'Lightweight interactions that keep browsing fast, calm, and immersive.',
     ],
     primaryLink: {
-      label: 'Browse articles',
-      href: '/articles',
+      label: 'Browse image boards',
+      href: '/images',
     },
     secondaryLink: {
-      label: 'See visuals',
-      href: '/images',
+      label: 'Explore creator profiles',
+      href: '/profile',
     },
   },
   cta: {
     badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    title: 'Explore image collections and creator profiles through one focused visual experience.',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'Move between gallery posts and public profiles through a cleaner visual system built for browsing, sharing, and identity.',
     primaryCta: {
-      label: 'Get Started Free',
+      label: 'Create your profile',
       href: '/register',
     },
     secondaryCta: {
-      label: 'Contact Sales',
-      href: '/contact',
+      label: 'Browse image boards',
+      href: '/images',
     },
   },
   taskSectionHeading: 'Latest {label}',
@@ -155,27 +155,27 @@ export const taskIntroCopy: Record<
   image: {
     title: 'Image-led posts and visual stories',
     paragraphs: [
-      'Images take the lead in this section through galleries, visual posts, and story-led content where imagery carries the experience.',
-      'These posts connect with articles, listings, and other sections so visuals can act as entry points into deeper content.',
-      'Browse the latest visual updates, then continue into related stories or supporting pages for more context.',
+      'Images take the lead in this section through galleries, visual drops, and mood-led posts where photography and artwork carry the experience.',
+      'Each board is designed to feel immersive first, with quieter metadata and stronger visual rhythm so the content has room to breathe.',
+      'Browse the latest visual updates, then continue into related creator profiles for context, identity, and follow-through.',
     ],
     links: [
-      { label: 'Read articles', href: '/articles' },
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open classifieds', href: '/classifieds' },
+      { label: 'Explore creator profiles', href: '/profile' },
+      { label: 'Open image boards', href: '/images' },
+      { label: 'Create your profile', href: '/register' },
     ],
   },
   profile: {
     title: 'Profiles, identities, and public pages',
     paragraphs: [
-      'Profiles capture the identity behind a business, creator, brand, or project and help visitors understand who is behind the content they are exploring.',
-      'These pages work as trust anchors across the site and connect naturally with stories, listings, documents, and other post types.',
-      'Browse profiles to understand people and brands more clearly, then continue into related content from the same source.',
+      'Profiles capture the identity behind each gallery, making it easier to understand the creator, studio, or visual brand behind the work.',
+      'These pages act as the trust and personality layer of the platform, connecting visitors to style, tone, and publishing history.',
+      'Browse profiles to discover people behind the images, then continue into their boards and recent visual posts.',
     ],
     links: [
-      { label: 'Open listings', href: '/listings' },
-      { label: 'Read articles', href: '/articles' },
       { label: 'Browse images', href: '/images' },
+      { label: 'Explore profiles', href: '/profile' },
+      { label: 'Create your profile', href: '/register' },
     ],
   },
   sbm: {

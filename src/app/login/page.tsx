@@ -1,9 +1,15 @@
+'use client'
+
+import { useMemo, useState, type FormEvent } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Bookmark, Building2, FileText, Image as ImageIcon, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
+import { useToast } from '@/components/ui/use-toast'
+import { useAuth } from '@/lib/auth-context'
 import { LOGIN_PAGE_OVERRIDE_ENABLED, LoginPageOverride } from '@/overrides/login-page'
 
 function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
@@ -33,11 +39,11 @@ function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
   }
   if (kind === 'visual') {
     return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      side: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
+      shell: 'bg-[linear-gradient(180deg,#fff6fb_0%,#fff8f2_42%,#ffffff_100%)] text-[#2c1a24]',
+      panel: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,255,255,0.9)] shadow-[0_26px_80px_rgba(176,100,132,0.14)]',
+      side: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,245,248,0.8)] shadow-[0_26px_80px_rgba(176,100,132,0.12)]',
+      muted: 'text-[#705265]',
+      action: 'bg-[#FE81D4] text-[#3b2032] hover:bg-[#f66bca]',
       icon: ImageIcon,
       title: 'Enter the creator workspace',
       body: 'Open your visual feed, creator profile, and publishing tools without dropping into a generic admin shell.',
@@ -60,10 +66,34 @@ export default function LoginPage() {
     return <LoginPageOverride />
   }
 
+  const router = useRouter()
+  const { toast } = useToast()
+  const { login, isLoading } = useAuth()
   const { recipe } = getFactoryState()
   const productKind = getProductKind(recipe)
   const config = getLoginConfig(productKind)
   const Icon = config.icon
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const highlights = useMemo(
+    () => [
+      'Your login is saved locally in this browser for the visual workspace.',
+      'Jump back into image boards, saved inspiration, and creator identity editing.',
+      'No backend changes required, only a smoother UI and local session experience.',
+    ],
+    []
+  )
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    await login(email, password)
+    toast({
+      title: 'Signed in successfully',
+      description: 'Your account has been saved locally on this device.',
+    })
+    router.push('/profile')
+  }
 
   return (
     <div className={`min-h-screen ${config.shell}`}>
@@ -75,18 +105,38 @@ export default function LoginPage() {
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{config.title}</h1>
             <p className={`mt-5 text-sm leading-8 ${config.muted}`}>{config.body}</p>
             <div className="mt-8 grid gap-4">
-              {['Cleaner product-specific workflows', 'Palette and layout matched to the site family', 'Fewer repeated admin patterns'].map((item) => (
-                <div key={item} className="rounded-[1.5rem] border border-current/10 px-4 py-4 text-sm">{item}</div>
+              {highlights.map((item) => (
+                <div key={item} className="rounded-[1.5rem] border border-current/10 bg-white/50 px-4 py-4 text-sm">{item}</div>
               ))}
             </div>
           </div>
 
           <div className={`rounded-[2rem] p-8 ${config.panel}`}>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Welcome back</p>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Password" type="password" />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action}`}>Sign in</button>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Sign in to your visual account</h2>
+            <p className={`mt-3 max-w-xl text-sm leading-7 ${config.muted}`}>Use your email to open your profile, manage your visual presence, and continue browsing curated image boards.</p>
+            <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
+              <input
+                className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm"
+                placeholder="Email address"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+              <input
+                className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm"
+                placeholder="Password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+              <button type="submit" disabled={isLoading} className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action} disabled:cursor-not-allowed disabled:opacity-60`}>
+                {isLoading ? 'Signing in...' : 'Sign in'}
+              </button>
             </form>
             <div className={`mt-6 flex items-center justify-between text-sm ${config.muted}`}>
               <Link href="/forgot-password" className="hover:underline">Forgot password?</Link>

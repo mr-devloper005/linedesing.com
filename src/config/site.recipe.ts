@@ -8,8 +8,8 @@ export const SITE_RECIPE: SiteRecipe = {
   footerTemplate: 'dense-footer',
   motionPack: 'studio-stagger',
   primaryTask: 'image',
-  enabledTasks: ['image', 'profile', 'article'],
-  taskTemplates: {'article': 'article-editorial', 'image': 'image-masonry', 'profile': 'profile-creator'},
+  enabledTasks: ['image', 'profile'],
+  taskTemplates: {'image': 'image-masonry', 'profile': 'profile-creator'},
   manualOverrides: {
     navbar: false,
     footer: false,

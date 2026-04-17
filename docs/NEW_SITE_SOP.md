@@ -55,6 +55,9 @@ Create the site with:
 - search works
 - comments work if enabled
 
+### 8. Verify SEO flow### 8. Verify SEO flow### 8. Verify SEO flow### 8. Verify SEO flow### 8. Verify SEO flow
+
+
 ### 8. Verify SEO flow
 - title template
 - meta description

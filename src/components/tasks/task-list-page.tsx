@@ -29,9 +29,9 @@ const variantShells = {
   'listing-showcase': 'bg-[linear-gradient(180deg,#ffffff_0%,#f4f9ff_100%)]',
   'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.08),transparent_20%),linear-gradient(180deg,#fff8ef_0%,#ffffff_100%)]',
   'article-journal': 'bg-[linear-gradient(180deg,#fffdf9_0%,#f7f1ea_100%)]',
-  'image-masonry': 'bg-[linear-gradient(180deg,#09101d_0%,#111c2f_100%)] text-white',
-  'image-portfolio': 'bg-[linear-gradient(180deg,#07111f_0%,#13203a_100%)] text-white',
-  'profile-creator': 'bg-[linear-gradient(180deg,#0a1120_0%,#101c34_100%)] text-white',
+  'image-masonry': 'bg-[linear-gradient(180deg,#fff6fb_0%,#fff8f2_42%,#ffffff_100%)]',
+  'image-portfolio': 'bg-[linear-gradient(180deg,#fff6fb_0%,#fff8f2_42%,#ffffff_100%)]',
+  'profile-creator': 'bg-[linear-gradient(180deg,#fff6fb_0%,#fff8f2_42%,#ffffff_100%)]',
   'profile-business': 'bg-[linear-gradient(180deg,#f6fbff_0%,#ffffff_100%)]',
   'classified-bulletin': 'bg-[linear-gradient(180deg,#edf3e4_0%,#ffffff_100%)]',
   'classified-market': 'bg-[linear-gradient(180deg,#f4f6ef_0%,#ffffff_100%)]',
@@ -60,14 +60,14 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
   const shellClass = variantShells[layoutKey as keyof typeof variantShells] || 'bg-background'
   const Icon = taskIcons[task] || LayoutGrid
 
-  const isDark = ['image-masonry', 'image-portfolio', 'profile-creator'].includes(layoutKey)
-  const ui = isDark
+  const isVisualTheme = ['image-masonry', 'image-portfolio', 'profile-creator'].includes(layoutKey)
+  const ui = isVisualTheme
     ? {
-        muted: 'text-slate-300',
-        panel: 'border border-white/10 bg-white/6',
-        soft: 'border border-white/10 bg-white/5',
-        input: 'border-white/10 bg-white/6 text-white',
-        button: 'bg-white text-slate-950 hover:bg-slate-200',
+        muted: 'text-[#705265]',
+        panel: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,255,255,0.9)] shadow-[0_26px_80px_rgba(176,100,132,0.14)]',
+        soft: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,245,248,0.8)]',
+        input: 'border border-[rgba(251,195,193,0.55)] bg-white text-[#3b2032]',
+        button: 'bg-[#FE81D4] text-[#3b2032] hover:bg-[#f66bca]',
       }
     : layoutKey.startsWith('article') || layoutKey.startsWith('sbm')
       ? {
@@ -125,7 +125,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
             <div className={`rounded-[2rem] p-7 shadow-[0_24px_70px_rgba(15,23,42,0.07)] ${ui.panel}`}>
               <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-70"><Icon className="h-4 w-4" /> {taskConfig?.label || task}</div>
               <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-foreground">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-4 max-w-2xl text-sm leading-7 ${ui.muted}`}>Built with a cleaner scan rhythm, stronger metadata grouping, and a structure designed for business discovery rather than editorial reading.</p>
+              <p className={`mt-4 max-w-2xl text-sm leading-7 ${ui.muted}`}>Designed for quick visual scanning with cleaner grouping and premium spacing so each card is easier to evaluate at a glance.</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href={taskConfig?.route || '#'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.button}`}>Explore results <ArrowRight className="h-4 w-4" /></Link>
                 <Link href="/search" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.soft}`}>Open search</Link>
@@ -175,13 +175,13 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
               <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${ui.soft}`}>
                 <Icon className="h-3.5 w-3.5" /> Visual feed
               </div>
-              <h1 className="mt-5 text-5xl font-semibold tracking-[-0.05em]">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This surface leans into stronger imagery, larger modules, and more expressive spacing so visual content feels materially different from reading and directory pages.</p>
+              <h1 className="mt-5 text-5xl font-semibold tracking-[-0.05em] text-foreground">{taskConfig?.description || 'Latest posts'}</h1>
+              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This visual lane now follows the same premium homepage direction, with softer surfaces, airy spacing, and a gallery-first rhythm that keeps the images in focus.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className={`min-h-[220px] rounded-[2rem] ${ui.panel}`} />
-              <div className={`min-h-[220px] rounded-[2rem] ${ui.soft}`} />
-              <div className={`col-span-2 min-h-[120px] rounded-[2rem] ${ui.panel}`} />
+              <div className={`min-h-[220px] rounded-[2rem] bg-[linear-gradient(135deg,rgba(254,129,212,0.22),rgba(255,255,255,0.88))] ${ui.panel}`} />
+              <div className={`min-h-[220px] rounded-[2rem] bg-[linear-gradient(135deg,rgba(255,234,187,0.45),rgba(255,245,248,0.92))] ${ui.soft}`} />
+              <div className={`col-span-2 min-h-[120px] rounded-[2rem] bg-[linear-gradient(135deg,rgba(251,195,193,0.25),rgba(255,255,255,0.92))] ${ui.panel}`} />
             </div>
           </section>
         ) : null}
@@ -189,11 +189,11 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         {layoutKey === 'profile-creator' || layoutKey === 'profile-business' ? (
           <section className={`mb-12 rounded-[2.2rem] p-8 shadow-[0_24px_70px_rgba(15,23,42,0.1)] ${ui.panel}`}>
             <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-              <div className={`min-h-[240px] rounded-[2rem] ${ui.soft}`} />
+              <div className={`min-h-[240px] rounded-[2rem] bg-[linear-gradient(135deg,rgba(254,129,212,0.22),rgba(255,244,248,0.9))] ${ui.soft}`} />
               <div>
                 <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>
-                <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Profiles with stronger identity, trust, and reputation cues.</h1>
-                <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This layout prioritizes the person or business surface first, then lets the feed continue below without borrowing the same visual logic used by articles or listings.</p>
+                <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Profiles with stronger identity framing and creator credibility cues.</h1>
+                <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This profile surface now matches the homepage tone, using the same soft premium palette and calm composition so creator identity feels connected to the visual feed.</p>
               </div>
             </div>
           </section>
@@ -219,7 +219,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
           <section className="mb-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
               <p className={`text-xs uppercase tracking-[0.3em] ${ui.muted}`}>{taskConfig?.label || task}</p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Curated resources arranged more like collections than a generic post feed.</h1>
+              <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-foreground">Curated resources arranged like intentional collections, not a repeated feed template.</h1>
               <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>Bookmarks, saved resources, and reference-style items need calmer grouping and lighter metadata. This variant gives them that separation.</p>
             </div>
             <div className={`rounded-[2rem] p-6 ${ui.panel}`}>

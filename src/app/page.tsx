@@ -114,14 +114,14 @@ function getEditorialTone() {
 
 function getVisualTone() {
   return {
-    shell: 'bg-[#07101f] text-white',
-    panel: 'border border-white/10 bg-[rgba(11,18,31,0.78)] shadow-[0_28px_80px_rgba(0,0,0,0.35)]',
-    soft: 'border border-white/10 bg-white/6',
-    muted: 'text-slate-300',
-    title: 'text-white',
-    badge: 'bg-[#8df0c8] text-[#07111f]',
-    action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
-    actionAlt: 'border border-white/10 bg-white/6 text-white hover:bg-white/10',
+    shell: 'bg-[linear-gradient(180deg,#fff6fb_0%,#fff8f2_42%,#ffffff_100%)] text-[#2c1a24]',
+    panel: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,255,255,0.9)] shadow-[0_26px_80px_rgba(176,100,132,0.14)]',
+    soft: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,245,248,0.8)]',
+    muted: 'text-[#705265]',
+    title: 'text-[#2c1a24]',
+    badge: 'bg-[#FE81D4] text-[#3b2032]',
+    action: 'bg-[#FE81D4] text-[#3b2032] hover:bg-[#f66bca]',
+    actionAlt: 'border border-[rgba(251,195,193,0.85)] bg-white text-[#3b2032] hover:bg-[#fff2f8]',
   }
 }
 
@@ -347,6 +347,8 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
   const tone = getVisualTone()
   const gallery = imagePosts.length ? imagePosts.slice(0, 5) : articlePosts.slice(0, 5)
   const creators = profilePosts.slice(0, 3)
+  const secondaryTask = SITE_CONFIG.tasks.find((task) => task.key === 'profile' && task.enabled) || SITE_CONFIG.tasks.find((task) => task.enabled && task.key !== primaryTask?.key)
+  const lowEmphasisTasks = SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== primaryTask?.key && task.key !== secondaryTask?.key).slice(0, 4)
 
   return (
     <main className={tone.shell}>
@@ -355,19 +357,19 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
           <div>
             <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] ${tone.badge}`}>
               <ImageIcon className="h-3.5 w-3.5" />
-              Visual publishing system
+              linedesine.com visual network
             </span>
             <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
-              Image-led discovery with creator profiles and a more gallery-like browsing rhythm.
+              Premium image sharing with identity-first profiles and immersive browsing.
             </h1>
             <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={primaryTask?.route || '/images'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
-                Open gallery
+                Browse image drops
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/profile" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                Meet creators
+              <Link href={secondaryTask?.route || '/profile'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
+                Discover profiles
               </Link>
             </div>
           </div>
@@ -388,9 +390,16 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Visual notes</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Larger media surfaces, fewer boxes, stronger pacing.</h2>
-            <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>This product avoids business-directory density and publication framing. The homepage behaves more like a visual board, with profile surfaces and imagery leading the experience.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Visual direction</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Gallery-first rhythm with premium whitespace and low-noise controls.</h2>
+            <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>The core focus stays on image sharing and social profiles. Other supported tasks remain available through lower-emphasis entry points without removing any route or feature behavior.</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {lowEmphasisTasks.map((task) => (
+                <Link key={task.key} href={task.route} className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] ${tone.soft}`}>
+                  {task.label}
+                </Link>
+              ))}
+            </div>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {creators.map((post) => (

@@ -1,6 +1,6 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'th8c7gywv7',
-  name: process.env.NEXT_PUBLIC_SITE_NAME || 'Line Desing',
+  name: process.env.NEXT_PUBLIC_SITE_NAME || 'linedesine.com',
   tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Visual profiles and image-led discovery',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||

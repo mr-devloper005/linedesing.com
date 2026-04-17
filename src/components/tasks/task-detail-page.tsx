@@ -226,6 +226,14 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   const schemaPayload = articleSchema ? [articleSchema, breadcrumbSchema] : breadcrumbSchema;
   const { recipe } = getFactoryState();
   const productKind = getProductKind(recipe);
+  const detailShell =
+    task === "image"
+      ? "bg-[linear-gradient(180deg,#fff7fc_0%,#fff1f9_46%,#ffffff_100%)]"
+      : task === "profile"
+        ? "bg-[linear-gradient(180deg,#fff8f9_0%,#fff3f4_48%,#ffffff_100%)]"
+        : task === "article"
+          ? "bg-[linear-gradient(180deg,#fffaf6_0%,#ffffff_100%)]"
+          : "bg-background";
 
   if (productKind === "directory" && (task === "listing" || task === "classified" || task === "profile")) {
     return (
@@ -248,7 +256,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen ${detailShell}`}>
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />

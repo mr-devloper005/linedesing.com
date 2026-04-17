@@ -27,11 +27,11 @@ function getTone(kind: ReturnType<typeof getProductKind>) {
   }
   if (kind === 'visual') {
     return {
-      shell: 'bg-[#07101f] text-white',
-      panel: 'border border-white/10 bg-white/6',
-      soft: 'border border-white/10 bg-white/5',
-      muted: 'text-slate-300',
-      action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
+      shell: 'bg-[linear-gradient(180deg,#fff6fb_0%,#fff8f2_42%,#ffffff_100%)] text-[#2c1a24]',
+      panel: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,255,255,0.9)] shadow-[0_26px_80px_rgba(176,100,132,0.14)]',
+      soft: 'border border-[rgba(251,195,193,0.55)] bg-[rgba(255,245,248,0.8)]',
+      muted: 'text-[#705265]',
+      action: 'bg-[#FE81D4] text-[#3b2032] hover:bg-[#f66bca]',
     }
   }
   return {
@@ -99,10 +99,10 @@ export default function ContactPage() {
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
             <h2 className="text-2xl font-semibold">Send a message</h2>
             <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Your name" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What do you need help with?" />
-              <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Share the full context so we can respond with the right next step." />
+              <input className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm" placeholder="Your name" />
+              <input className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm" placeholder="Email address" />
+              <input className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm" placeholder="What do you need help with?" />
+              <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-white/70 px-4 py-3 text-sm" placeholder="Share the full context so we can respond with the right next step." />
               <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
             </form>
           </div>
