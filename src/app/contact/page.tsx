@@ -48,6 +48,8 @@ export default function ContactPage() {
     return <ContactPageOverride />
   }
 
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || `hello@${SITE_CONFIG.domain}`
+  const contactHref = `mailto:${contactEmail}`
   const { recipe } = getFactoryState()
   const productKind = getProductKind(recipe)
   const tone = getTone(productKind)
@@ -98,6 +100,13 @@ export default function ContactPage() {
 
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
             <h2 className="text-2xl font-semibold">Send a message</h2>
+            <div className={`mt-4 rounded-[1.4rem] p-4 ${tone.soft}`}>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em]">Direct email</p>
+              <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>Prefer email instead of the form? Reach us directly and keep the contact address managed from your environment settings.</p>
+              <a href={contactHref} className={`mt-4 inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold ${tone.action}`}>
+                Email {contactEmail}
+              </a>
+            </div>
             <form className="mt-6 grid gap-4">
               <input className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm" placeholder="Your name" />
               <input className="h-12 rounded-xl border border-current/10 bg-white/70 px-4 text-sm" placeholder="Email address" />
