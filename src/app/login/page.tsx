@@ -92,7 +92,7 @@ export default function LoginPage() {
       title: 'Signed in successfully',
       description: 'Your account has been saved locally on this device.',
     })
-    router.push('/profile')
+    router.push('/')
   }
 
   return (
