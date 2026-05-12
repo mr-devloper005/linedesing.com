@@ -245,16 +245,16 @@ function DirectoryHome({ primaryTask, enabledTasks, listingPosts, classifiedPost
             </ul>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {(profilePosts.length ? profilePosts : classifiedPosts).slice(0, 4).map((post) => {
+            {classifiedPosts.slice(0, 4).map((post) => {
               const meta = getPostMeta(post)
-              const taskKey = resolveTaskKey(post.task, profilePosts.length ? 'profile' : 'classified')
+              const taskKey = resolveTaskKey(post.task, 'classified')
               return (
                 <Link key={post.id} href={getTaskHref(taskKey, post.slug)} className={`overflow-hidden rounded-[1.8rem] ${tone.panel}`}>
                   <div className="relative h-44 overflow-hidden">
                     <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover" />
                   </div>
                   <div className="p-5">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] opacity-70">{meta.category || post.task || 'Profile'}</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] opacity-70">{meta.category || post.task || 'Classified'}</p>
                     <h3 className="mt-2 text-xl font-semibold">{post.title}</h3>
                     <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Quick access to local information and related surfaces.'}</p>
                   </div>
@@ -360,16 +360,13 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
               linedesine.com visual network
             </span>
             <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
-              Premium image sharing with identity-first profiles and immersive browsing.
+              Elevated sharing and immersive discovery in one seamless experience.
             </h1>
             <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={primaryTask?.route || '/images'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.action}`}>
                 Browse image drops
                 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href={secondaryTask?.route || '/profile'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                Discover profiles
               </Link>
             </div>
           </div>
@@ -388,11 +385,11 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mt-12">
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Visual direction</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Gallery-first rhythm with premium whitespace and low-noise controls.</h2>
-            <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>The core focus stays on image sharing and social profiles. Other supported tasks remain available through lower-emphasis entry points without removing any route or feature behavior.</p>
+            <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>The core focus stays on image sharing. Other supported tasks remain available through lower-emphasis entry points without removing any route or feature behavior.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {lowEmphasisTasks.map((task) => (
                 <Link key={task.key} href={task.route} className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] ${tone.soft}`}>
@@ -400,17 +397,6 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
                 </Link>
               ))}
             </div>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {creators.map((post) => (
-              <Link key={post.id} href={`/profile/${post.slug}`} className={`rounded-[1.8rem] p-5 ${tone.soft}`}>
-                <div className="relative h-40 overflow-hidden rounded-[1.2rem]">
-                  <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">{post.title}</h3>
-                <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Creator profile and visual identity surface.'}</p>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
@@ -458,22 +444,11 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts, articlePosts }
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mt-12">
           <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Why this feels different</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">More like saved boards and reading shelves than a generic post feed.</h2>
             <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>The structure is calmer, the cards are less noisy, and the page encourages collecting and returning instead of forcing everything into a fast-scrolling list.</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {people.map((post) => (
-              <Link key={post.id} href={`/profile/${post.slug}`} className={`rounded-[1.8rem] p-5 ${tone.soft}`}>
-                <div className="relative h-32 overflow-hidden rounded-[1.2rem]">
-                  <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">{post.title}</h3>
-                <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>Curator profile, saved resources, and collection notes.</p>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
