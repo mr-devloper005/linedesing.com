@@ -97,11 +97,9 @@ export function Navbar() {
   const { isAuthenticated } = useAuth()
   const { recipe } = getFactoryState()
 
-  const navigation = useMemo(() => SITE_CONFIG.tasks.filter((task) => task.enabled), [])
-  const primaryTask = SITE_CONFIG.tasks.find((task) => task.key === recipe.primaryTask && task.enabled) || navigation[0]
-  const secondaryTask = SITE_CONFIG.tasks.find((task) => task.key === 'profile' && task.enabled && task.key !== primaryTask?.key)
-    || SITE_CONFIG.tasks.find((task) => task.enabled && task.key !== primaryTask?.key)
-    || null
+  const navigation = useMemo(() => SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile'), [])
+  const primaryTask = navigation.find((task) => task.key === recipe.primaryTask) || navigation[0]
+  const secondaryTask = navigation.find((task) => task.key !== primaryTask?.key) || null
   const emphasizedNavigation = [primaryTask, secondaryTask].filter(Boolean) as typeof navigation
   const discoveryNavigation = navigation.filter((task) => !emphasizedNavigation.some((item) => item.key === task.key))
   const mobileNavigation = emphasizedNavigation.map((task) => ({
